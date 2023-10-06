@@ -29,6 +29,8 @@ namespace Bliss_Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+
             modelBuilder.Entity<Expense>().Property(e => e.Amount).HasColumnType<decimal>("decimal(10,2)");
             modelBuilder.Entity<Income>().Property(e => e.Amount).HasColumnType<decimal>("decimal(15,2)");
             modelBuilder.Entity<Jar>().Property(e => e.PercentOfIncomeAlloted).HasColumnType<decimal>("decimal(15,2)");
@@ -65,6 +67,7 @@ namespace Bliss_Infrastructure.Data
 
             modelBuilder.Entity<ExpenseCategory>().HasData(expenseCategories);
 
+            modelBuilder.Entity<Income>().Property("DateAdded").HasDefaultValueSql("getutcdate()");
         }
 
 
